@@ -12,6 +12,8 @@
 		BB89455C233AB35B005F4C23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB89455B233AB35B005F4C23 /* Assets.xcassets */; };
 		BB89455F233AB35B005F4C23 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB89455D233AB35B005F4C23 /* LaunchScreen.storyboard */; };
 		BB89456A233AB35B005F4C23 /* System_HealthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB894569233AB35B005F4C23 /* System_HealthTests.swift */; };
+		BB894579233AB8F8005F4C23 /* CPUMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB894578233AB8F8005F4C23 /* CPUMonitor.swift */; };
+		BB89457B233AC6BA005F4C23 /* Monitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB89457A233AC6BA005F4C23 /* Monitor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +36,8 @@
 		BB894565233AB35B005F4C23 /* System HealthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "System HealthTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB894569233AB35B005F4C23 /* System_HealthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = System_HealthTests.swift; sourceTree = "<group>"; };
 		BB89456B233AB35B005F4C23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BB894578233AB8F8005F4C23 /* CPUMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPUMonitor.swift; sourceTree = "<group>"; };
+		BB89457A233AC6BA005F4C23 /* Monitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monitor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,8 @@
 			children = (
 				BB894552233AB357005F4C23 /* AppDelegate.swift */,
 				BB894556233AB357005F4C23 /* ViewController.swift */,
+				BB894578233AB8F8005F4C23 /* CPUMonitor.swift */,
+				BB89457A233AC6BA005F4C23 /* Monitor.swift */,
 				BB894577233AB7A5005F4C23 /* Ressources */,
 				BB894560233AB35B005F4C23 /* Info.plist */,
 			);
@@ -201,8 +207,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB89457B233AC6BA005F4C23 /* Monitor.swift in Sources */,
 				BB894557233AB357005F4C23 /* ViewController.swift in Sources */,
 				BB894553233AB357005F4C23 /* AppDelegate.swift in Sources */,
+				BB894579233AB8F8005F4C23 /* CPUMonitor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
