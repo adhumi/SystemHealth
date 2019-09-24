@@ -77,8 +77,7 @@
 			children = (
 				BB894552233AB357005F4C23 /* AppDelegate.swift */,
 				BB894556233AB357005F4C23 /* ViewController.swift */,
-				BB89455B233AB35B005F4C23 /* Assets.xcassets */,
-				BB89455D233AB35B005F4C23 /* LaunchScreen.storyboard */,
+				BB894577233AB7A5005F4C23 /* Ressources */,
 				BB894560233AB35B005F4C23 /* Info.plist */,
 			);
 			path = "System Health";
@@ -91,6 +90,15 @@
 				BB89456B233AB35B005F4C23 /* Info.plist */,
 			);
 			path = "System HealthTests";
+			sourceTree = "<group>";
+		};
+		BB894577233AB7A5005F4C23 /* Ressources */ = {
+			isa = PBXGroup;
+			children = (
+				BB89455B233AB35B005F4C23 /* Assets.xcassets */,
+				BB89455D233AB35B005F4C23 /* LaunchScreen.storyboard */,
+			);
+			path = Ressources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
