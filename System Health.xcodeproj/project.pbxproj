@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB743F55233D775100E5F1F0 /* BatteryMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB743F54233D775100E5F1F0 /* BatteryMonitor.swift */; };
 		BB894553233AB357005F4C23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB894552233AB357005F4C23 /* AppDelegate.swift */; };
 		BB894557233AB357005F4C23 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB894556233AB357005F4C23 /* ViewController.swift */; };
 		BB89455C233AB35B005F4C23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB89455B233AB35B005F4C23 /* Assets.xcassets */; };
@@ -27,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BB743F54233D775100E5F1F0 /* BatteryMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryMonitor.swift; sourceTree = "<group>"; };
 		BB89454F233AB357005F4C23 /* System Health.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "System Health.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB894552233AB357005F4C23 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB894556233AB357005F4C23 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 				BB894552233AB357005F4C23 /* AppDelegate.swift */,
 				BB894556233AB357005F4C23 /* ViewController.swift */,
 				BB894578233AB8F8005F4C23 /* CPUMonitor.swift */,
+				BB743F54233D775100E5F1F0 /* BatteryMonitor.swift */,
 				BB89457A233AC6BA005F4C23 /* Monitor.swift */,
 				BB894577233AB7A5005F4C23 /* Ressources */,
 				BB894560233AB35B005F4C23 /* Info.plist */,
@@ -210,6 +213,7 @@
 				BB89457B233AC6BA005F4C23 /* Monitor.swift in Sources */,
 				BB894557233AB357005F4C23 /* ViewController.swift in Sources */,
 				BB894553233AB357005F4C23 /* AppDelegate.swift in Sources */,
+				BB743F55233D775100E5F1F0 /* BatteryMonitor.swift in Sources */,
 				BB894579233AB8F8005F4C23 /* CPUMonitor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
