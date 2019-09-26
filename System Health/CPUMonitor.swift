@@ -1,7 +1,7 @@
 import Foundation
 
 class CPUMonitor: Monitor {
-    struct Report {
+    struct CPUReport: Report {
         let user: Double
         let system: Double
         let idle: Double
@@ -25,7 +25,7 @@ class CPUMonitor: Monitor {
 
     private let refreshRate: TimeInterval = 1 // In seconds
 
-    var reports: [Report] = []
+    var history: [CPUReport] = []
     private var previousLoad = try? CPUMonitor.hostCPULoadInfo()
 
     private var timer: Timer?
@@ -51,14 +51,10 @@ class CPUMonitor: Monitor {
             self.previousLoad = load
             return
         }
-        let report = Report(load: load, previousLoad: previousLoad)
-        reports.append(report)
+        let report = CPUReport(load: load, previousLoad: previousLoad)
+        history.append(report)
         self.previousLoad = load
         print(report)
-    }
-
-    var currentLoad: Report? {
-        return reports.last
     }
 }
 
