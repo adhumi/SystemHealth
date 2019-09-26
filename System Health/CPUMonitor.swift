@@ -7,20 +7,31 @@ class CPUMonitor: Monitor {
         let idle: Double
         let nice: Double
 
-        init(loadInfo: host_cpu_load_info) {
-            user = Double(loadInfo.cpu_ticks.0)
-            system = Double(loadInfo.cpu_ticks.1)
-            idle = Double(loadInfo.cpu_ticks.2)
-            nice = Double(loadInfo.cpu_ticks.3)
+        let timestamp = NSDate().timeIntervalSince1970
+
+        fileprivate init(load: host_cpu_load_info, previousLoad: host_cpu_load_info) {
+            let userDiff = Double(load.cpu_ticks.0 - previousLoad.cpu_ticks.0)
+            let sysDiff  = Double(load.cpu_ticks.1 - previousLoad.cpu_ticks.1)
+            let idleDiff = Double(load.cpu_ticks.2 - previousLoad.cpu_ticks.2)
+            let niceDiff = Double(load.cpu_ticks.3 - previousLoad.cpu_ticks.3)
+            let totalTicks = sysDiff + userDiff + niceDiff + idleDiff
+
+            system = sysDiff / totalTicks * 100.0
+            user = userDiff / totalTicks * 100.0
+            idle = idleDiff / totalTicks * 100.0
+            nice = niceDiff / totalTicks * 100.0
         }
     }
 
+    private let refreshRate: TimeInterval = 1 // In seconds
+
     var reports: [Report] = []
+    private var previousLoad = try? CPUMonitor.hostCPULoadInfo()
 
     private var timer: Timer?
 
     func start() {
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(checkCPU), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: refreshRate, target: self, selector: #selector(checkCPU), userInfo: nil, repeats: true)
     }
 
     func stop() {
@@ -30,32 +41,24 @@ class CPUMonitor: Monitor {
 
     @objc
     private func checkCPU() {
-        if let cpuLoad = try? hostCPULoadInfo() {
-            store(cpuLoadInfo: cpuLoad)
+        if let cpuLoad = try? CPUMonitor.hostCPULoadInfo() {
+            store(load: cpuLoad)
         }
     }
 
-    private func store(cpuLoadInfo: host_cpu_load_info) {
-        let report = Report(loadInfo: cpuLoadInfo)
+    private func store(load: host_cpu_load_info) {
+        guard let previousLoad = previousLoad else {
+            self.previousLoad = load
+            return
+        }
+        let report = Report(load: load, previousLoad: previousLoad)
         reports.append(report)
-        print(currentLoad())
+        self.previousLoad = load
+        print(report)
     }
 
-    func currentLoad() -> (user: Float, system: Float, idle: Float)? {
-        guard let lastReport = reports.last else { return nil }
-        let previousReport = reports.count >= 2 ? reports[reports.count - 2] : nil
-
-        let userDiff = lastReport.user - (previousReport?.user ?? 0)
-        let systemDiff = lastReport.system - (previousReport?.system ?? 0)
-        let idleDiff = lastReport.idle - (previousReport?.idle ?? 0)
-
-        let totalTicks = userDiff + systemDiff + idleDiff
-
-        let user = Float(userDiff) / Float(totalTicks)
-        let system = Float(systemDiff) / Float(totalTicks)
-        let idle = Float(idleDiff) / Float(totalTicks)
-
-        return (user: user, system: system, idle: idle)
+    var currentLoad: Report? {
+        return reports.last
     }
 }
 
@@ -64,7 +67,7 @@ enum CPUMonitorErrors: Error {
 }
 
 extension CPUMonitor {
-    private func hostCPULoadInfo() throws -> host_cpu_load_info {
+    private static func hostCPULoadInfo() throws -> host_cpu_load_info {
         let hostCPULoadInfoCount = MemoryLayout<host_cpu_load_info>.stride / MemoryLayout<integer_t>.stride
         var size = mach_msg_type_number_t(hostCPULoadInfoCount)
         var cpuLoadInfo = host_cpu_load_info()
