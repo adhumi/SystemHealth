@@ -2,6 +2,8 @@ import Foundation
 
 class CPUMonitor: Monitor {
     struct CPUReport: Report {
+        /// `system` and `nice` are always empty on iOS.
+        /// We keep them here for consistency with internal APIs and in case of future evolutions.
         let user: Double
         let system: Double
         let idle: Double
