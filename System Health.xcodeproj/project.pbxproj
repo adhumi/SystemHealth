@@ -60,6 +60,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BB743F56233D7BBE00E5F1F0 /* Monitoring */ = {
+			isa = PBXGroup;
+			children = (
+				BB89457A233AC6BA005F4C23 /* Monitor.swift */,
+				BB894578233AB8F8005F4C23 /* CPUMonitor.swift */,
+				BB743F54233D775100E5F1F0 /* BatteryMonitor.swift */,
+			);
+			path = Monitoring;
+			sourceTree = "<group>";
+		};
 		BB894546233AB357005F4C23 = {
 			isa = PBXGroup;
 			children = (
@@ -83,9 +93,7 @@
 			children = (
 				BB894552233AB357005F4C23 /* AppDelegate.swift */,
 				BB894556233AB357005F4C23 /* ViewController.swift */,
-				BB894578233AB8F8005F4C23 /* CPUMonitor.swift */,
-				BB743F54233D775100E5F1F0 /* BatteryMonitor.swift */,
-				BB89457A233AC6BA005F4C23 /* Monitor.swift */,
+				BB743F56233D7BBE00E5F1F0 /* Monitoring */,
 				BB894577233AB7A5005F4C23 /* Ressources */,
 				BB894560233AB35B005F4C23 /* Info.plist */,
 			);
