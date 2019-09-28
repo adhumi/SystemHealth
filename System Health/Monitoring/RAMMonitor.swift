@@ -42,8 +42,10 @@ class RAMMonitor: Monitor {
 
     @objc
     private func checkRAM() {
-        if let statistics = try? RAMMonitor.memoryStatistics() {
-            store(statistics: statistics)
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            if let statistics = try? RAMMonitor.memoryStatistics() {
+                self?.store(statistics: statistics)
+            }
         }
     }
 

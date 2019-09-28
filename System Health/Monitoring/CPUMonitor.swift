@@ -43,8 +43,10 @@ class CPUMonitor: Monitor {
 
     @objc
     private func checkCPU() {
-        if let cpuLoad = try? CPUMonitor.hostCPULoadInfo() {
-            store(load: cpuLoad)
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            if let cpuLoad = try? CPUMonitor.hostCPULoadInfo() {
+                self?.store(load: cpuLoad)
+            }
         }
     }
 
