@@ -44,6 +44,21 @@ extension BatteryMonitor {
     }
 }
 
+extension UIDevice.BatteryState {
+    public var readableValue: String {
+        switch self {
+        case .unplugged:
+            return "Unplugged"
+        case .charging:
+            return "Charging"
+        case .full:
+            return "Full"
+        default:
+            return "Unknown"
+        }
+    }
+}
+
 extension UIDevice.BatteryState: CustomDebugStringConvertible {
     public var debugDescription: String {
         switch self {

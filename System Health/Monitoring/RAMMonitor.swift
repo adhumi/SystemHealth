@@ -13,15 +13,14 @@ class RAMMonitor: Monitor {
         let timestamp = NSDate().timeIntervalSince1970
 
         init(statistics: vm_statistics64) {
-            self.free = Double(statistics.free_count)
-            self.active = Double(statistics.active_count)
-            self.inactive = Double(statistics.inactive_count)
-            self.wired = Double(statistics.wire_count)
-
-            /// Compute the Memory Pressure value, as displayed in macOS' Activity Monitor
-            /// Source: https://github.com/beltex/SystemKit/blob/master/SystemKit/System.swift#L353
+            let pageSize = Double(vm_kernel_page_size)
             let gigabyte: Double = pow(2, 30) // Convert from bytes to gigabytes
-            self.pressure = Double(statistics.compressor_page_count) * Double(vm_kernel_page_size) / gigabyte
+
+            self.free = Double(statistics.free_count) * pageSize / gigabyte
+            self.active = Double(statistics.active_count) * pageSize / gigabyte
+            self.inactive = Double(statistics.inactive_count) * pageSize / gigabyte
+            self.wired = Double(statistics.wire_count) * pageSize / gigabyte
+            self.pressure = Double(statistics.compressor_page_count) * pageSize / gigabyte
         }
     }
 

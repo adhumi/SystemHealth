@@ -18,10 +18,10 @@ class CPUMonitor: Monitor {
             let niceDiff = Double(load.cpu_ticks.3 - previousLoad.cpu_ticks.3)
             let totalTicks = sysDiff + userDiff + niceDiff + idleDiff
 
-            system = sysDiff / totalTicks * 100.0
-            user = userDiff / totalTicks * 100.0
-            idle = idleDiff / totalTicks * 100.0
-            nice = niceDiff / totalTicks * 100.0
+            system = sysDiff / totalTicks
+            user = userDiff / totalTicks
+            idle = idleDiff / totalTicks
+            nice = niceDiff / totalTicks
         }
     }
 
