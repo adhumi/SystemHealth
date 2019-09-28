@@ -20,6 +20,8 @@
 		BB894579233AB8F8005F4C23 /* CPUMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB894578233AB8F8005F4C23 /* CPUMonitor.swift */; };
 		BB89457B233AC6BA005F4C23 /* Monitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB89457A233AC6BA005F4C23 /* Monitor.swift */; };
 		BBB84BD3233FF759000D7619 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB84BD2233FF759000D7619 /* Context.swift */; };
+		BBB84BDA233FFE74000D7619 /* DashboardHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB84BD9233FFE74000D7619 /* DashboardHeaderView.swift */; };
+		BBB84BDC233FFE85000D7619 /* DashboardHeaderVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB84BDB233FFE85000D7619 /* DashboardHeaderVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,8 @@
 		BB894578233AB8F8005F4C23 /* CPUMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPUMonitor.swift; sourceTree = "<group>"; };
 		BB89457A233AC6BA005F4C23 /* Monitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monitor.swift; sourceTree = "<group>"; };
 		BBB84BD2233FF759000D7619 /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
+		BBB84BD9233FFE74000D7619 /* DashboardHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardHeaderView.swift; sourceTree = "<group>"; };
+		BBB84BDB233FFE85000D7619 /* DashboardHeaderVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardHeaderVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +156,8 @@
 			children = (
 				BB894556233AB357005F4C23 /* RootVC.swift */,
 				BB743F5C233D85E600E5F1F0 /* AlertsVC.swift */,
+				BBB84BD9233FFE74000D7619 /* DashboardHeaderView.swift */,
+				BBB84BDB233FFE85000D7619 /* DashboardHeaderVM.swift */,
 				BB743F5E233D873300E5F1F0 /* SettingsVC.swift */,
 			);
 			path = UI;
@@ -260,8 +266,10 @@
 				BB89457B233AC6BA005F4C23 /* Monitor.swift in Sources */,
 				BB743F5B233D84F300E5F1F0 /* UIViewController+Additions.swift in Sources */,
 				BB894557233AB357005F4C23 /* RootVC.swift in Sources */,
+				BBB84BDA233FFE74000D7619 /* DashboardHeaderView.swift in Sources */,
 				BBB84BD3233FF759000D7619 /* Context.swift in Sources */,
 				BB894553233AB357005F4C23 /* AppDelegate.swift in Sources */,
+				BBB84BDC233FFE85000D7619 /* DashboardHeaderVM.swift in Sources */,
 				BB743F58233D7C1E00E5F1F0 /* RAMMonitor.swift in Sources */,
 				BB743F5D233D85E600E5F1F0 /* AlertsVC.swift in Sources */,
 				BB743F55233D775100E5F1F0 /* BatteryMonitor.swift in Sources */,

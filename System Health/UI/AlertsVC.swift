@@ -1,7 +1,10 @@
 import UIKit
 
 class AlertsVC: UITableViewController {
+    let context: Context
+
     init(context: Context) {
+        self.context = context
         super.init(style: .plain)
     }
 
@@ -15,6 +18,8 @@ class AlertsVC: UITableViewController {
         title = "System Health"
 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: String(describing: UITableViewCell.self))
+        tableView.register(DashboardHeaderView.self, forHeaderFooterViewReuseIdentifier: String(describing: DashboardHeaderView.self))
+        tableView.sectionHeaderHeight = UITableView.automaticDimension
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -30,5 +35,13 @@ class AlertsVC: UITableViewController {
         cell.textLabel?.text = "Soon"
         cell.detailTextLabel?.text = "Very soon"
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard section == 0 else { return nil }
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: DashboardHeaderView.self)) as? DashboardHeaderView else { return nil }
+        let viewModel = DashboardHeaderVM(context: context)
+        header.configure(with: viewModel)
+        return header
     }
 }
