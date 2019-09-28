@@ -22,6 +22,7 @@
 		BBB84BD3233FF759000D7619 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB84BD2233FF759000D7619 /* Context.swift */; };
 		BBB84BDA233FFE74000D7619 /* DashboardHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB84BD9233FFE74000D7619 /* DashboardHeaderView.swift */; };
 		BBB84BDC233FFE85000D7619 /* DashboardHeaderVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB84BDB233FFE85000D7619 /* DashboardHeaderVM.swift */; };
+		BBB84BDE23400117000D7619 /* UITableView+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB84BDD23400117000D7619 /* UITableView+Reusable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		BBB84BD2233FF759000D7619 /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		BBB84BD9233FFE74000D7619 /* DashboardHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardHeaderView.swift; sourceTree = "<group>"; };
 		BBB84BDB233FFE85000D7619 /* DashboardHeaderVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardHeaderVM.swift; sourceTree = "<group>"; };
+		BBB84BDD23400117000D7619 /* UITableView+Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Reusable.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				BB743F5A233D84F300E5F1F0 /* UIViewController+Additions.swift */,
+				BBB84BDD23400117000D7619 /* UITableView+Reusable.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 			files = (
 				BB89457B233AC6BA005F4C23 /* Monitor.swift in Sources */,
 				BB743F5B233D84F300E5F1F0 /* UIViewController+Additions.swift in Sources */,
+				BBB84BDE23400117000D7619 /* UITableView+Reusable.swift in Sources */,
 				BB894557233AB357005F4C23 /* RootVC.swift in Sources */,
 				BBB84BDA233FFE74000D7619 /* DashboardHeaderView.swift in Sources */,
 				BBB84BD3233FF759000D7619 /* Context.swift in Sources */,

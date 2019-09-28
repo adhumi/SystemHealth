@@ -17,8 +17,8 @@ class AlertsVC: UITableViewController {
 
         title = "System Health"
 
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: String(describing: UITableViewCell.self))
-        tableView.register(DashboardHeaderView.self, forHeaderFooterViewReuseIdentifier: String(describing: DashboardHeaderView.self))
+        tableView.register(cellType: UITableViewCell.self)
+        tableView.register(headerFooterType: DashboardHeaderView.self)
         tableView.sectionHeaderHeight = UITableView.automaticDimension
     }
 
@@ -31,7 +31,7 @@ class AlertsVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: UITableViewCell.self), for: indexPath)
+        let cell = tableView.dequeueReusableCell(for: indexPath)
         cell.textLabel?.text = "Soon"
         cell.detailTextLabel?.text = "Very soon"
         return cell
@@ -39,7 +39,7 @@ class AlertsVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard section == 0 else { return nil }
-        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: DashboardHeaderView.self)) as? DashboardHeaderView else { return nil }
+        let header = tableView.dequeueReusableHeaderFooter(headerFooterType: DashboardHeaderView.self)
         let viewModel = DashboardHeaderVM(context: context)
         header.configure(with: viewModel)
         return header
