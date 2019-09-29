@@ -1,6 +1,6 @@
 import UIKit
 
-class AlertsVC: UITableViewController {
+class DashboardVC: UITableViewController {
     let context: Context
 
     init(context: Context) {

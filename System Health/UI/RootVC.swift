@@ -3,11 +3,11 @@ import UIKit
 class RootVC: UIViewController {
     let context: Context
 
-    let alertsVC: AlertsVC
+    let alertsVC: DashboardVC
 
     init(context: Context) {
         self.context = context
-        self.alertsVC = AlertsVC(context: context)
+        self.alertsVC = DashboardVC(context: context)
         
         super.init(nibName: nil, bundle: nil)
     }
