@@ -168,14 +168,30 @@
 			isa = PBXGroup;
 			children = (
 				BB894556233AB357005F4C23 /* RootVC.swift */,
-				BB743F5C233D85E600E5F1F0 /* AlertsVC.swift */,
-				BBB84BD9233FFE74000D7619 /* DashboardHeaderView.swift */,
-				BBB84BDB233FFE85000D7619 /* DashboardHeaderVM.swift */,
+				BBB84BED234034B3000D7619 /* Dashboard */,
+				BBB84BEC234034A9000D7619 /* Settings */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		BBB84BEC234034A9000D7619 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
 				BB743F5E233D873300E5F1F0 /* SettingsVC.swift */,
 				BBB84BE823402AA6000D7619 /* SwitchCell.swift */,
 				BBB84BEA23402EFD000D7619 /* ThresholdCell.swift */,
 			);
-			path = UI;
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		BBB84BED234034B3000D7619 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				BB743F5C233D85E600E5F1F0 /* AlertsVC.swift */,
+				BBB84BD9233FFE74000D7619 /* DashboardHeaderView.swift */,
+				BBB84BDB233FFE85000D7619 /* DashboardHeaderVM.swift */,
+			);
+			path = Dashboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
