@@ -10,6 +10,13 @@ class RAMMonitor: Monitor {
         let inactive: Float
         let wired: Float
 
+        var total: Float {
+            return free + active + inactive + wired
+        }
+
+        var usage: Float {
+            return (total - free - inactive) / total // Considering free and inactive as "free" memory
+        }
 
         let timestamp = NSDate().timeIntervalSince1970
 

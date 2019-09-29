@@ -10,6 +10,7 @@ class DashboardHeaderView: UITableViewHeaderFooterView {
     let ramActiveLabel = UILabel()
     let ramInactiveLabel = UILabel()
     let ramWiredLabel = UILabel()
+    let ramUsageLabel = UILabel()
 
     let batteryLevelLabel = UILabel()
     let batteryStateLabel = UILabel()
@@ -41,7 +42,7 @@ class DashboardHeaderView: UITableViewHeaderFooterView {
         let stackView = columnStackView
 
         cpuUsedLabel.font = font
-        cpuUsedLabel.text = "Usage:"
+        cpuUsedLabel.text = "User:"
         stackView.addArrangedSubview(cpuUsedLabel)
 
         cpuIdleLabel.font = font
@@ -54,21 +55,25 @@ class DashboardHeaderView: UITableViewHeaderFooterView {
     private var ramStackView: UIStackView {
         let stackView = columnStackView
 
-        ramFreeLabel.font = font
-        ramFreeLabel.text = "Free:"
-        stackView.addArrangedSubview(ramFreeLabel)
-
         ramActiveLabel.font = font
         ramActiveLabel.text = "Active:"
         stackView.addArrangedSubview(ramActiveLabel)
+
+        ramWiredLabel.font = font
+        ramWiredLabel.text = "Wired:"
+        stackView.addArrangedSubview(ramWiredLabel)
 
         ramInactiveLabel.font = font
         ramInactiveLabel.text = "Inactive:"
         stackView.addArrangedSubview(ramInactiveLabel)
 
-        ramWiredLabel.font = font
-        ramWiredLabel.text = "Wired:"
-        stackView.addArrangedSubview(ramWiredLabel)
+        ramFreeLabel.font = font
+        ramFreeLabel.text = "Free:"
+        stackView.addArrangedSubview(ramFreeLabel)
+
+        ramUsageLabel.font = font
+        ramUsageLabel.text = "Usage:"
+        stackView.addArrangedSubview(ramUsageLabel)
 
         return stackView
     }
@@ -118,15 +123,16 @@ class DashboardHeaderView: UITableViewHeaderFooterView {
     }
 
     func updateCPU(_ report: CPUMonitor.CPUReport) {
-        cpuUsedLabel.text = String(format: "Usage: %.2f\u{202f}%%", report.user * 100)
+        cpuUsedLabel.text = String(format: "User: %.2f\u{202f}%%", report.user * 100)
         cpuIdleLabel.text = String(format: "Idle: %.2f\u{202f}%%", report.idle * 100)
     }
 
     func updateRAM(_ report: RAMMonitor.RAMReport) {
-        ramFreeLabel.text = String(format: "Free: %.2f\u{00a0}Gb", report.free)
         ramActiveLabel.text = String(format: "Active: %.2f\u{00a0}Gb", report.active)
-        ramInactiveLabel.text = String(format: "Inactive: %.2f\u{00a0}Gb", report.inactive)
         ramWiredLabel.text = String(format: "Wired: %.2f\u{00a0}Gb", report.wired)
+        ramInactiveLabel.text = String(format: "Inactive: %.2f\u{00a0}Gb", report.inactive)
+        ramFreeLabel.text = String(format: "Free: %.2f\u{00a0}Gb", report.free)
+        ramUsageLabel.text = String(format: "Usage: %.f\u{202f}%%", report.usage * 100)
     }
 
     func updateBattery(_ report: BatteryMonitor.BatteryReport) {
