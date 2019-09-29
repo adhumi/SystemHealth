@@ -1,7 +1,7 @@
 import Foundation
 
 class SettingsStore {
-    let preferenceKeys: [String] = ["CPU", "RAM", "Battery"]
+    let preferenceKeys: [String] = ["cpu", "ram", "battery"]
 
     var preferences: [String: AlertingPreferences] = [:]
 

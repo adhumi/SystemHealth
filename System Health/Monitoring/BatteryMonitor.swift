@@ -3,6 +3,8 @@ import UIKit
 
 class BatteryMonitor: Monitor {
     static let newReportNotificationName = NSNotification.Name("\(BatteryMonitor.self).newReport")
+    static let thresholdReachedNotificationName = NSNotification.Name("\(BatteryMonitor.self).thresholdReached")
+    static let thresholdCooldownNotificationName = NSNotification.Name("\(BatteryMonitor.self).thresholdCooldown")
 
     struct BatteryReport: Report {
         let level: Float
@@ -12,6 +14,8 @@ class BatteryMonitor: Monitor {
     }
 
     var history: [BatteryReport] = []
+
+    var checkStatus: ((BatteryReport, BatteryReport) -> MonitoringNotificationInstruction)?
 
     func start() {
         UIDevice.current.isBatteryMonitoringEnabled = true
@@ -41,6 +45,7 @@ extension BatteryMonitor {
 extension BatteryMonitor {
     private func storeBatteryState() {
         let report = BatteryReport(level: UIDevice.current.batteryLevel, state: UIDevice.current.batteryState)
+        checkThreshold(for: report)
         history.append(report)
         NotificationCenter.default.post(name: type(of: self).newReportNotificationName, object: report)
     }

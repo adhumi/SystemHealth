@@ -2,6 +2,8 @@ import Foundation
 
 class CPUMonitor: Monitor {
     static let newReportNotificationName = NSNotification.Name("\(CPUMonitor.self).newReport")
+    static let thresholdReachedNotificationName = NSNotification.Name("\(CPUMonitor.self).thresholdReached")
+    static let thresholdCooldownNotificationName = NSNotification.Name("\(CPUMonitor.self).thresholdCooldown")
 
     struct CPUReport: Report {
         /// `system` and `nice` are always empty on iOS.
@@ -32,6 +34,8 @@ class CPUMonitor: Monitor {
     var history: [CPUReport] = []
     private var previousLoad = try? CPUMonitor.hostCPULoadInfo()
 
+    var checkStatus: ((CPUReport, CPUReport) -> MonitoringNotificationInstruction)?
+
     private var timer: Timer?
 
     func start() {
@@ -58,6 +62,7 @@ class CPUMonitor: Monitor {
             return
         }
         let report = CPUReport(load: load, previousLoad: previousLoad)
+        checkThreshold(for: report)
         history.append(report)
         self.previousLoad = load
         NotificationCenter.default.post(name: type(of: self).newReportNotificationName, object: report)

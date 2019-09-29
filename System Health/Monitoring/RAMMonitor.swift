@@ -2,6 +2,8 @@ import Foundation
 
 class RAMMonitor: Monitor {
     static let newReportNotificationName = NSNotification.Name("\(RAMMonitor.self).newReport")
+    static let thresholdReachedNotificationName = NSNotification.Name("\(RAMMonitor.self).thresholdReached")
+    static let thresholdCooldownNotificationName = NSNotification.Name("\(RAMMonitor.self).thresholdCooldown")
 
     struct RAMReport: Report {
         /// There are more data avalable in `vm_statistics64` but those as the most widely used when tracking RAM usage.
@@ -34,6 +36,8 @@ class RAMMonitor: Monitor {
     private let refreshRate: TimeInterval = 1 // In seconds
 
     var history: [RAMReport] = []
+    
+    var checkStatus: ((RAMMonitor.RAMReport, RAMMonitor.RAMReport) -> MonitoringNotificationInstruction)?
 
     private var timer: Timer?
 
@@ -57,6 +61,7 @@ class RAMMonitor: Monitor {
 
     private func store(statistics: vm_statistics64) {
         let report = RAMReport(statistics: statistics)
+        checkThreshold(for: report)
         history.append(report)
         NotificationCenter.default.post(name: type(of: self).newReportNotificationName, object: report)
     }
