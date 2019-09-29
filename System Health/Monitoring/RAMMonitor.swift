@@ -51,7 +51,6 @@ class RAMMonitor: Monitor {
     private func store(statistics: vm_statistics64) {
         let report = RAMReport(statistics: statistics)
         history.append(report)
-        print(report)
     }
 }
 

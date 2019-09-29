@@ -58,7 +58,6 @@ class CPUMonitor: Monitor {
         let report = CPUReport(load: load, previousLoad: previousLoad)
         history.append(report)
         self.previousLoad = load
-        print(report)
     }
 }
 

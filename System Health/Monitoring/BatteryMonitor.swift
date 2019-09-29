@@ -40,7 +40,6 @@ extension BatteryMonitor {
     private func storeBatteryState() {
         let report = BatteryReport(level: UIDevice.current.batteryLevel, state: UIDevice.current.batteryState)
         history.append(report)
-        print(report)
     }
 }
 

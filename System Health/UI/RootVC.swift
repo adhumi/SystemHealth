@@ -1,9 +1,12 @@
 import UIKit
 
 class RootVC: UIViewController {
+    let context: Context
+
     let alertsVC: AlertsVC
 
     init(context: Context) {
+        self.context = context
         self.alertsVC = AlertsVC(context: context)
         
         super.init(nibName: nil, bundle: nil)
@@ -23,7 +26,7 @@ class RootVC: UIViewController {
     }
 
     @IBAction func onPresentSettings(_ sender: UIBarButtonItem) {
-        let settingsVC = SettingsVC()
+        let settingsVC = SettingsVC(context: context)
         let navigationController = UINavigationController(rootViewController: settingsVC)
         present(navigationController, animated: true)
     }

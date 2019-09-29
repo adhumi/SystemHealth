@@ -5,6 +5,8 @@ class Context {
     let ramMonitor = RAMMonitor()
     let batteryMonitor = BatteryMonitor()
 
+    let settingsStore = SettingsStore()
+
     func startMonitoring() {
         cpuMonitor.start()
         ramMonitor.start()

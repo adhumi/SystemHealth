@@ -23,6 +23,10 @@
 		BBB84BDA233FFE74000D7619 /* DashboardHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB84BD9233FFE74000D7619 /* DashboardHeaderView.swift */; };
 		BBB84BDC233FFE85000D7619 /* DashboardHeaderVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB84BDB233FFE85000D7619 /* DashboardHeaderVM.swift */; };
 		BBB84BDE23400117000D7619 /* UITableView+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB84BDD23400117000D7619 /* UITableView+Reusable.swift */; };
+		BBB84BE023401893000D7619 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB84BDF23401893000D7619 /* SettingsStore.swift */; };
+		BBB84BE22340193A000D7619 /* AlertingPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB84BE12340193A000D7619 /* AlertingPreferences.swift */; };
+		BBB84BE923402AA6000D7619 /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB84BE823402AA6000D7619 /* SwitchCell.swift */; };
+		BBB84BEB23402EFD000D7619 /* ThresholdCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB84BEA23402EFD000D7619 /* ThresholdCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +60,10 @@
 		BBB84BD9233FFE74000D7619 /* DashboardHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardHeaderView.swift; sourceTree = "<group>"; };
 		BBB84BDB233FFE85000D7619 /* DashboardHeaderVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardHeaderVM.swift; sourceTree = "<group>"; };
 		BBB84BDD23400117000D7619 /* UITableView+Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Reusable.swift"; sourceTree = "<group>"; };
+		BBB84BDF23401893000D7619 /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
+		BBB84BE12340193A000D7619 /* AlertingPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertingPreferences.swift; sourceTree = "<group>"; };
+		BBB84BE823402AA6000D7619 /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
+		BBB84BEA23402EFD000D7619 /* ThresholdCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThresholdCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +158,8 @@
 			isa = PBXGroup;
 			children = (
 				BBB84BD2233FF759000D7619 /* Context.swift */,
+				BBB84BDF23401893000D7619 /* SettingsStore.swift */,
+				BBB84BE12340193A000D7619 /* AlertingPreferences.swift */,
 			);
 			path = Context;
 			sourceTree = "<group>";
@@ -162,6 +172,8 @@
 				BBB84BD9233FFE74000D7619 /* DashboardHeaderView.swift */,
 				BBB84BDB233FFE85000D7619 /* DashboardHeaderVM.swift */,
 				BB743F5E233D873300E5F1F0 /* SettingsVC.swift */,
+				BBB84BE823402AA6000D7619 /* SwitchCell.swift */,
+				BBB84BEA23402EFD000D7619 /* ThresholdCell.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -269,14 +281,18 @@
 				BB89457B233AC6BA005F4C23 /* Monitor.swift in Sources */,
 				BB743F5B233D84F300E5F1F0 /* UIViewController+Additions.swift in Sources */,
 				BBB84BDE23400117000D7619 /* UITableView+Reusable.swift in Sources */,
+				BBB84BE22340193A000D7619 /* AlertingPreferences.swift in Sources */,
 				BB894557233AB357005F4C23 /* RootVC.swift in Sources */,
 				BBB84BDA233FFE74000D7619 /* DashboardHeaderView.swift in Sources */,
+				BBB84BEB23402EFD000D7619 /* ThresholdCell.swift in Sources */,
 				BBB84BD3233FF759000D7619 /* Context.swift in Sources */,
 				BB894553233AB357005F4C23 /* AppDelegate.swift in Sources */,
 				BBB84BDC233FFE85000D7619 /* DashboardHeaderVM.swift in Sources */,
 				BB743F58233D7C1E00E5F1F0 /* RAMMonitor.swift in Sources */,
 				BB743F5D233D85E600E5F1F0 /* AlertsVC.swift in Sources */,
+				BBB84BE023401893000D7619 /* SettingsStore.swift in Sources */,
 				BB743F55233D775100E5F1F0 /* BatteryMonitor.swift in Sources */,
+				BBB84BE923402AA6000D7619 /* SwitchCell.swift in Sources */,
 				BB894579233AB8F8005F4C23 /* CPUMonitor.swift in Sources */,
 				BB743F5F233D873300E5F1F0 /* SettingsVC.swift in Sources */,
 			);
