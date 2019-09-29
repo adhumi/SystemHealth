@@ -10,8 +10,8 @@ class ThresholdCell: UITableViewCell {
 
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.addTarget(self, action: #selector(onValueChanged(_:)), for: .valueChanged)
-        slider.addTarget(self, action: #selector(onValueChanged(_:)), for: .touchUpInside)
-        slider.addTarget(self, action: #selector(onValueChanged(_:)), for: .touchUpOutside)
+        slider.addTarget(self, action: #selector(onReleased(_:)), for: .touchUpInside)
+        slider.addTarget(self, action: #selector(onReleased(_:)), for: .touchUpOutside)
         contentView.addSubview(slider)
 
         if let textLabel = textLabel, let detailTextLabel = detailTextLabel {
