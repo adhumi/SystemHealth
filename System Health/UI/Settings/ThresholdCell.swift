@@ -42,7 +42,7 @@ class ThresholdCell: UITableViewCell {
     }
 
     func configure(with value: Float) {
-        slider.value = value
+        slider.value = Float(value)
         detailTextLabel?.text = String(format: "%.f\u{202f}%%", slider.value * 100)
     }
 

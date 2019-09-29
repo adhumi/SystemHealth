@@ -5,22 +5,22 @@ class RAMMonitor: Monitor {
 
     struct RAMReport: Report {
         /// There are more data avalable in `vm_statistics64` but those as the most widely used when tracking RAM usage.
-        let free: Double
-        let active: Double
-        let inactive: Double
-        let wired: Double
+        let free: Float
+        let active: Float
+        let inactive: Float
+        let wired: Float
 
 
         let timestamp = NSDate().timeIntervalSince1970
 
         init(statistics: vm_statistics64) {
-            let pageSize = Double(vm_kernel_page_size)
-            let gigabyte: Double = pow(2, 30) // Convert from bytes to gigabytes
+            let pageSize = Float(vm_kernel_page_size)
+            let gigabyte: Float = pow(2, 30) // Convert from bytes to gigabytes
 
-            self.free = Double(statistics.free_count) * pageSize / gigabyte
-            self.active = Double(statistics.active_count) * pageSize / gigabyte
-            self.inactive = Double(statistics.inactive_count) * pageSize / gigabyte
-            self.wired = Double(statistics.wire_count) * pageSize / gigabyte
+            self.free = Float(statistics.free_count) * pageSize / gigabyte
+            self.active = Float(statistics.active_count) * pageSize / gigabyte
+            self.inactive = Float(statistics.inactive_count) * pageSize / gigabyte
+            self.wired = Float(statistics.wire_count) * pageSize / gigabyte
         }
     }
 

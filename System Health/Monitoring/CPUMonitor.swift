@@ -6,10 +6,10 @@ class CPUMonitor: Monitor {
     struct CPUReport: Report {
         /// `system` and `nice` are always empty on iOS.
         /// We keep them here for consistency with internal APIs and in case of future evolutions.
-        let user: Double
-        let system: Double
-        let idle: Double
-        let nice: Double
+        let user: Float
+        let system: Float
+        let idle: Float
+        let nice: Float
 
         let timestamp = NSDate().timeIntervalSince1970
 
@@ -20,10 +20,10 @@ class CPUMonitor: Monitor {
             let niceDiff = Double(load.cpu_ticks.3 - previousLoad.cpu_ticks.3)
             let totalTicks = sysDiff + userDiff + niceDiff + idleDiff
 
-            system = sysDiff / totalTicks
-            user = userDiff / totalTicks
-            idle = idleDiff / totalTicks
-            nice = niceDiff / totalTicks
+            system = Float(sysDiff / totalTicks)
+            user = Float(userDiff / totalTicks)
+            idle = Float(idleDiff / totalTicks)
+            nice = Float(niceDiff / totalTicks)
         }
     }
 
