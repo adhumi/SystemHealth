@@ -1,11 +1,18 @@
 import UIKit
+import CoreData
 
 class DashboardVC: UITableViewController {
     let context: Context
+    let alertsFRC: NSFetchedResultsController<Alert>
 
     init(context: Context) {
         self.context = context
+        self.alertsFRC = context.alerts()
+
         super.init(style: .plain)
+
+        self.alertsFRC.delegate = self
+        try? self.alertsFRC.performFetch()
     }
 
     required init?(coder: NSCoder) {
@@ -27,12 +34,14 @@ class DashboardVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        guard let alerts = alertsFRC.fetchedObjects else { return 0 }
+        return alerts.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(for: indexPath)
-        cell.textLabel?.text = "Soon"
+        let alert = alertsFRC.object(at: indexPath)
+        cell.textLabel?.text = (alert.metric ?? "") + " " + (alert.state ?? "")
         cell.detailTextLabel?.text = "Very soon"
         return cell
     }
@@ -43,5 +52,35 @@ class DashboardVC: UITableViewController {
         let viewModel = DashboardHeaderVM(context: context)
         header.configure(with: viewModel)
         return header
+    }
+}
+
+extension DashboardVC: NSFetchedResultsControllerDelegate {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch (type) {
+        case .insert:
+            if let indexPath = newIndexPath {
+                tableView.insertRows(at: [indexPath], with: .fade)
+            }
+            break;
+        case .update:
+            if let indexPath = newIndexPath {
+                self.tableView.reloadRows(at: [indexPath], with: .fade)
+            }
+        case .delete:
+            if let indexPath = indexPath {
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+            break;
+        default: break
+        }
+    }
+
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
     }
 }

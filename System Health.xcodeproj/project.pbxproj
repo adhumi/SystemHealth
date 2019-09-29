@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB42EA7A23415AAD00DCD3D5 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB42EA7823415AAD00DCD3D5 /* Model.xcdatamodeld */; };
+		BB42EA7C23415C5500DCD3D5 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB42EA7B23415C5500DCD3D5 /* CoreDataManager.swift */; };
+		BB42EAAF23415E8200DCD3D5 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB42EAAE23415E8200DCD3D5 /* Alert.swift */; };
+		BB42EAB12341625900DCD3D5 /* Context+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB42EAB02341625900DCD3D5 /* Context+Alert.swift */; };
 		BB743F55233D775100E5F1F0 /* BatteryMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB743F54233D775100E5F1F0 /* BatteryMonitor.swift */; };
 		BB743F58233D7C1E00E5F1F0 /* RAMMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB743F57233D7C1E00E5F1F0 /* RAMMonitor.swift */; };
 		BB743F5B233D84F300E5F1F0 /* UIViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB743F5A233D84F300E5F1F0 /* UIViewController+Additions.swift */; };
@@ -40,6 +44,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BB42EA7923415AAD00DCD3D5 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		BB42EA7B23415C5500DCD3D5 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		BB42EAAE23415E8200DCD3D5 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		BB42EAB02341625900DCD3D5 /* Context+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Context+Alert.swift"; sourceTree = "<group>"; };
 		BB743F54233D775100E5F1F0 /* BatteryMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryMonitor.swift; sourceTree = "<group>"; };
 		BB743F57233D7C1E00E5F1F0 /* RAMMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RAMMonitor.swift; sourceTree = "<group>"; };
 		BB743F5A233D84F300E5F1F0 /* UIViewController+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Additions.swift"; sourceTree = "<group>"; };
@@ -158,8 +166,12 @@
 			isa = PBXGroup;
 			children = (
 				BBB84BD2233FF759000D7619 /* Context.swift */,
+				BB42EAB02341625900DCD3D5 /* Context+Alert.swift */,
 				BBB84BDF23401893000D7619 /* SettingsStore.swift */,
 				BBB84BE12340193A000D7619 /* AlertingPreferences.swift */,
+				BB42EA7B23415C5500DCD3D5 /* CoreDataManager.swift */,
+				BB42EAAE23415E8200DCD3D5 /* Alert.swift */,
+				BB42EA7823415AAD00DCD3D5 /* Model.xcdatamodeld */,
 			);
 			path = Context;
 			sourceTree = "<group>";
@@ -297,8 +309,11 @@
 				BB89457B233AC6BA005F4C23 /* Monitor.swift in Sources */,
 				BB743F5B233D84F300E5F1F0 /* UIViewController+Additions.swift in Sources */,
 				BBB84BDE23400117000D7619 /* UITableView+Reusable.swift in Sources */,
+				BB42EAB12341625900DCD3D5 /* Context+Alert.swift in Sources */,
+				BB42EA7C23415C5500DCD3D5 /* CoreDataManager.swift in Sources */,
 				BBB84BE22340193A000D7619 /* AlertingPreferences.swift in Sources */,
 				BB894557233AB357005F4C23 /* RootVC.swift in Sources */,
+				BB42EA7A23415AAD00DCD3D5 /* Model.xcdatamodeld in Sources */,
 				BBB84BDA233FFE74000D7619 /* DashboardHeaderView.swift in Sources */,
 				BBB84BEB23402EFD000D7619 /* ThresholdCell.swift in Sources */,
 				BBB84BD3233FF759000D7619 /* Context.swift in Sources */,
@@ -310,6 +325,7 @@
 				BB743F55233D775100E5F1F0 /* BatteryMonitor.swift in Sources */,
 				BBB84BE923402AA6000D7619 /* SwitchCell.swift in Sources */,
 				BB894579233AB8F8005F4C23 /* CPUMonitor.swift in Sources */,
+				BB42EAAF23415E8200DCD3D5 /* Alert.swift in Sources */,
 				BB743F5F233D873300E5F1F0 /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -569,6 +585,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BB42EA7823415AAD00DCD3D5 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BB42EA7923415AAD00DCD3D5 /* Model.xcdatamodel */,
+			);
+			currentVersion = BB42EA7923415AAD00DCD3D5 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BB894547233AB357005F4C23 /* Project object */;
 }

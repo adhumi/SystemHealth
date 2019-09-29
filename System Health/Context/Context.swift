@@ -7,6 +7,10 @@ class Context {
 
     let settingsStore = SettingsStore()
 
+    let store = CoreDataManager()
+
+    private var thresholdsObservers: [NSObjectProtocol] = []
+
     init() {
         cpuMonitor.checkStatus = { [weak self] (report, previousReport) in
             guard let self = self else { return .none }
@@ -56,5 +60,43 @@ class Context {
         cpuMonitor.stop()
         ramMonitor.stop()
         batteryMonitor.stop()
+    }
+
+    private func setupThresholdsObservers() {
+        thresholdsObservers.append(NotificationCenter.default.addObserver(forName: CPUMonitor.thresholdReachedNotificationName, object: nil, queue: OperationQueue.main) { [weak self] (notification) in
+            guard let self = self, let report = notification.object as? CPUMonitor.CPUReport else { return }
+            _ = Alert(metric: "cpu", value: report.user, state: "reached", date: Date(timeIntervalSince1970: report.timestamp), context: self.store.context)
+            self.store.save()
+        })
+
+        thresholdsObservers.append(NotificationCenter.default.addObserver(forName: CPUMonitor.thresholdCooldownNotificationName, object: nil, queue: OperationQueue.main) { [weak self] (notification) in
+            guard let self = self, let report = notification.object as? CPUMonitor.CPUReport else { return }
+            _ = Alert(metric: "cpu", value: report.user, state: "cooldown", date: Date(timeIntervalSince1970: report.timestamp), context: self.store.context)
+            self.store.save()
+        })
+
+        thresholdsObservers.append(NotificationCenter.default.addObserver(forName: RAMMonitor.thresholdReachedNotificationName, object: nil, queue: OperationQueue.main) { [weak self] (notification) in
+            guard let self = self, let report = notification.object as? RAMMonitor.RAMReport else { return }
+            _ = Alert(metric: "ram", value: report.usage, state: "reached", date: Date(timeIntervalSince1970: report.timestamp), context: self.store.context)
+            self.store.save()
+        })
+
+        thresholdsObservers.append(NotificationCenter.default.addObserver(forName: RAMMonitor.thresholdCooldownNotificationName, object: nil, queue: OperationQueue.main) { [weak self] (notification) in
+            guard let self = self, let report = notification.object as? RAMMonitor.RAMReport else { return }
+            _ = Alert(metric: "ram", value: report.usage, state: "cooldown", date: Date(timeIntervalSince1970: report.timestamp), context: self.store.context)
+            self.store.save()
+        })
+
+        thresholdsObservers.append(NotificationCenter.default.addObserver(forName: BatteryMonitor.thresholdReachedNotificationName, object: nil, queue: OperationQueue.main) { [weak self] (notification) in
+            guard let self = self, let report = notification.object as? BatteryMonitor.BatteryReport else { return }
+            _ = Alert(metric: "battery", value: report.level, state: "reached", date: Date(timeIntervalSince1970: report.timestamp), context: self.store.context)
+            self.store.save()
+        })
+
+        thresholdsObservers.append(NotificationCenter.default.addObserver(forName: CPUMonitor.thresholdCooldownNotificationName, object: nil, queue: OperationQueue.main) { [weak self] (notification) in
+            guard let self = self, let report = notification.object as? BatteryMonitor.BatteryReport else { return }
+            _ = Alert(metric: "battery", value: report.level, state: "cooldown", date: Date(timeIntervalSince1970: report.timestamp), context: self.store.context)
+            self.store.save()
+        })
     }
 }
