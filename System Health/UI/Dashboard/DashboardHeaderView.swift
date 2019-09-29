@@ -3,6 +3,8 @@ import UIKit
 class DashboardHeaderView: UITableViewHeaderFooterView {
     var viewModel: DashboardHeaderVM?
 
+    let containerView = UIView()
+
     let cpuUsedLabel = UILabel()
     let cpuIdleLabel = UILabel()
 
@@ -17,29 +19,64 @@ class DashboardHeaderView: UITableViewHeaderFooterView {
 
     private var timer: CADisplayLink?
 
-    private let font = UIFont.monospacedDigitSystemFont(ofSize: 13, weight: .regular)
+    private let font = UIFont.monospacedDigitSystemFont(ofSize: 12, weight: .regular)
 
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
 
+        contentView.backgroundColor = .systemBackground
+
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.layer.borderColor = UIColor.separator.cgColor
+        containerView.layer.borderWidth = 1 / UIScreen.main.scale
+        containerView.layer.cornerRadius = 4
+        containerView.backgroundColor = .secondarySystemBackground
+        contentView.addSubview(containerView)
+
         let stackView = UIStackView(arrangedSubviews: [cpuStackView, ramStackView, batteryStackView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
-        stackView.spacing = 8
+        stackView.spacing = 16
         stackView.alignment = .top
         stackView.distribution = .fillEqually
         contentView.addSubview(stackView)
 
+        let cpuRamSeparator = UIView()
+        cpuRamSeparator.backgroundColor = .separator
+        cpuRamSeparator.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(cpuRamSeparator)
+
+        let ramBatterySeparator = UIView()
+        ramBatterySeparator.backgroundColor = .separator
+        ramBatterySeparator.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(ramBatterySeparator)
+
         NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: contentView.readableContentGuide.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: contentView.readableContentGuide.trailingAnchor),
-            stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            containerView.leadingAnchor.constraint(equalTo: contentView.readableContentGuide.leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: contentView.readableContentGuide.trailingAnchor),
+            containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+
+            stackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 8),
+            stackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 8),
+            stackView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 4),
+            stackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -4),
+
+            cpuRamSeparator.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 8),
+            cpuRamSeparator.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -8),
+            cpuRamSeparator.trailingAnchor.constraint(equalTo: ramStackView.leadingAnchor, constant: -8),
+            cpuRamSeparator.widthAnchor.constraint(equalToConstant: 1 / UIScreen.main.scale),
+            ramBatterySeparator.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 8),
+            ramBatterySeparator.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -8),
+            ramBatterySeparator.leadingAnchor.constraint(equalTo: ramStackView.trailingAnchor, constant: 8),
+            ramBatterySeparator.widthAnchor.constraint(equalToConstant: 1 / UIScreen.main.scale),
         ])
     }
 
-    private var cpuStackView: UIStackView {
+    private lazy var cpuStackView: UIStackView = {
         let stackView = columnStackView
+
+        stackView.addArrangedSubview(titleLabel(text: "CPU"))
 
         cpuUsedLabel.font = font
         cpuUsedLabel.text = "User:"
@@ -50,10 +87,12 @@ class DashboardHeaderView: UITableViewHeaderFooterView {
         stackView.addArrangedSubview(cpuIdleLabel)
 
         return stackView
-    }
+    }()
 
-    private var ramStackView: UIStackView {
+    private lazy var ramStackView: UIStackView = {
         let stackView = columnStackView
+
+        stackView.addArrangedSubview(titleLabel(text: "RAM"))
 
         ramActiveLabel.font = font
         ramActiveLabel.text = "Active:"
@@ -76,10 +115,12 @@ class DashboardHeaderView: UITableViewHeaderFooterView {
         stackView.addArrangedSubview(ramUsageLabel)
 
         return stackView
-    }
+    }()
 
-    private var batteryStackView: UIStackView {
+    private lazy var batteryStackView: UIStackView = {
         let stackView = columnStackView
+
+        stackView.addArrangedSubview(titleLabel(text: "Battery"))
 
         batteryLevelLabel.font = font
         batteryLevelLabel.text = "Level:"
@@ -90,6 +131,14 @@ class DashboardHeaderView: UITableViewHeaderFooterView {
         stackView.addArrangedSubview(batteryStateLabel)
 
         return stackView
+    }()
+
+    private func titleLabel(text: String) -> UILabel {
+        let label = UILabel()
+        label.font = UIFont.monospacedDigitSystemFont(ofSize: 12, weight: .semibold)
+        label.textColor = tintColor
+        label.text = text
+        return label
     }
 
     private var columnStackView: UIStackView {

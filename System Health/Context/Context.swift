@@ -48,6 +48,8 @@ class Context {
             }
             return .none
         }
+
+        setupThresholdsObservers()
     }
 
     func startMonitoring() {

@@ -11,6 +11,7 @@
 		BB42EA7C23415C5500DCD3D5 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB42EA7B23415C5500DCD3D5 /* CoreDataManager.swift */; };
 		BB42EAAF23415E8200DCD3D5 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB42EAAE23415E8200DCD3D5 /* Alert.swift */; };
 		BB42EAB12341625900DCD3D5 /* Context+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB42EAB02341625900DCD3D5 /* Context+Alert.swift */; };
+		BB42EAB723416E2F00DCD3D5 /* AlertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB42EAB623416E2F00DCD3D5 /* AlertCell.swift */; };
 		BB743F55233D775100E5F1F0 /* BatteryMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB743F54233D775100E5F1F0 /* BatteryMonitor.swift */; };
 		BB743F58233D7C1E00E5F1F0 /* RAMMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB743F57233D7C1E00E5F1F0 /* RAMMonitor.swift */; };
 		BB743F5B233D84F300E5F1F0 /* UIViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB743F5A233D84F300E5F1F0 /* UIViewController+Additions.swift */; };
@@ -48,6 +49,7 @@
 		BB42EA7B23415C5500DCD3D5 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		BB42EAAE23415E8200DCD3D5 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		BB42EAB02341625900DCD3D5 /* Context+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Context+Alert.swift"; sourceTree = "<group>"; };
+		BB42EAB623416E2F00DCD3D5 /* AlertCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertCell.swift; sourceTree = "<group>"; };
 		BB743F54233D775100E5F1F0 /* BatteryMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryMonitor.swift; sourceTree = "<group>"; };
 		BB743F57233D7C1E00E5F1F0 /* RAMMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RAMMonitor.swift; sourceTree = "<group>"; };
 		BB743F5A233D84F300E5F1F0 /* UIViewController+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Additions.swift"; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				BB743F5C233D85E600E5F1F0 /* DashboardVC.swift */,
 				BBB84BD9233FFE74000D7619 /* DashboardHeaderView.swift */,
 				BBB84BDB233FFE85000D7619 /* DashboardHeaderVM.swift */,
+				BB42EAB623416E2F00DCD3D5 /* AlertCell.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 				BBB84BE023401893000D7619 /* SettingsStore.swift in Sources */,
 				BB743F55233D775100E5F1F0 /* BatteryMonitor.swift in Sources */,
 				BBB84BE923402AA6000D7619 /* SwitchCell.swift in Sources */,
+				BB42EAB723416E2F00DCD3D5 /* AlertCell.swift in Sources */,
 				BB894579233AB8F8005F4C23 /* CPUMonitor.swift in Sources */,
 				BB42EAAF23415E8200DCD3D5 /* Alert.swift in Sources */,
 				BB743F5F233D873300E5F1F0 /* SettingsVC.swift in Sources */,

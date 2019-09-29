@@ -24,7 +24,7 @@ class DashboardVC: UITableViewController {
 
         title = "System Health"
 
-        tableView.register(cellType: UITableViewCell.self)
+        tableView.register(cellType: AlertCell.self)
         tableView.register(headerFooterType: DashboardHeaderView.self)
         tableView.sectionHeaderHeight = UITableView.automaticDimension
     }
@@ -39,10 +39,9 @@ class DashboardVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(for: indexPath)
+        let cell = tableView.dequeueReusableCell(for: indexPath, cellType: AlertCell.self)
         let alert = alertsFRC.object(at: indexPath)
-        cell.textLabel?.text = (alert.metric ?? "") + " " + (alert.state ?? "")
-        cell.detailTextLabel?.text = "Very soon"
+        cell.configure(with: alert)
         return cell
     }
 
