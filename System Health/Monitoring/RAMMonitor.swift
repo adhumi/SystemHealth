@@ -10,7 +10,6 @@ class RAMMonitor: Monitor {
         let inactive: Double
         let wired: Double
 
-        let pressure: Double
 
         let timestamp = NSDate().timeIntervalSince1970
 
@@ -22,7 +21,6 @@ class RAMMonitor: Monitor {
             self.active = Double(statistics.active_count) * pageSize / gigabyte
             self.inactive = Double(statistics.inactive_count) * pageSize / gigabyte
             self.wired = Double(statistics.wire_count) * pageSize / gigabyte
-            self.pressure = Double(statistics.compressor_page_count) * pageSize / gigabyte
         }
     }
 

@@ -10,7 +10,6 @@ class DashboardHeaderView: UITableViewHeaderFooterView {
     let ramActiveLabel = UILabel()
     let ramInactiveLabel = UILabel()
     let ramWiredLabel = UILabel()
-    let ramPressureLabel = UILabel()
 
     let batteryLevelLabel = UILabel()
     let batteryStateLabel = UILabel()
@@ -71,10 +70,6 @@ class DashboardHeaderView: UITableViewHeaderFooterView {
         ramWiredLabel.text = "Wired:"
         stackView.addArrangedSubview(ramWiredLabel)
 
-        ramPressureLabel.font = font
-        ramPressureLabel.text = "Pressure:"
-        stackView.addArrangedSubview(ramPressureLabel)
-
         return stackView
     }
 
@@ -132,7 +127,6 @@ class DashboardHeaderView: UITableViewHeaderFooterView {
         ramActiveLabel.text = String(format: "Active: %.2f\u{00a0}Gb", report.active)
         ramInactiveLabel.text = String(format: "Inactive: %.2f\u{00a0}Gb", report.inactive)
         ramWiredLabel.text = String(format: "Wired: %.2f\u{00a0}Gb", report.wired)
-        ramPressureLabel.text = String(format: "Pressure: %.2f\u{202f}%%", report.pressure * 100)
     }
 
     func updateBattery(_ report: BatteryMonitor.BatteryReport) {
