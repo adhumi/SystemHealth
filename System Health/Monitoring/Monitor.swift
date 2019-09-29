@@ -10,6 +10,7 @@ protocol Monitor {
     func stop()
     var current: T? { get }
     var history: [T] { get }
+    static var newReportNotificationName: NSNotification.Name { get }
 }
 
 extension Monitor {

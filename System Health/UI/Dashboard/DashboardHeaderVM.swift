@@ -7,6 +7,10 @@ class DashboardHeaderVM {
     var updateRAMState: ((RAMMonitor.RAMReport) -> Void)?
     var updateBatteryState: ((BatteryMonitor.BatteryReport) -> Void)?
 
+    private var cpuObserver: NSObjectProtocol?
+    private var ramObserver: NSObjectProtocol?
+    private var batteryObserver: NSObjectProtocol?
+
     private var timer: Timer?
 
     func stop() {
@@ -16,12 +20,32 @@ class DashboardHeaderVM {
 
     init(context: Context) {
         self.context = context
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateValues), userInfo: nil, repeats: true)
+
+        cpuObserver = NotificationCenter.default.addObserver(forName: CPUMonitor.newReportNotificationName, object: nil, queue: OperationQueue.main) { [weak self] (notification) in
+            guard let report = notification.object as? CPUMonitor.CPUReport else { return }
+            self?.updateCPUState?(report)
+        }
+
+        ramObserver = NotificationCenter.default.addObserver(forName: RAMMonitor.newReportNotificationName, object: nil, queue: OperationQueue.main) { [weak self] (notification) in
+            guard let report = notification.object as? RAMMonitor.RAMReport else { return }
+            self?.updateRAMState?(report)
+        }
+
+        batteryObserver = NotificationCenter.default.addObserver(forName: BatteryMonitor.newReportNotificationName, object: nil, queue: OperationQueue.main) { [weak self] (notification) in
+            guard let report = notification.object as? BatteryMonitor.BatteryReport else { return }
+            self?.updateBatteryState?(report)
+        }
     }
 
-    @objc func updateValues() {
-        context.cpuMonitor.current.map { updateCPUState?($0) }
-        context.ramMonitor.current.map { updateRAMState?($0) }
-        context.batteryMonitor.current.map { updateBatteryState?($0) }
+    var lastCPUReport: CPUMonitor.CPUReport? {
+        return context.cpuMonitor.current
+    }
+
+    var lastRAMReport: RAMMonitor.RAMReport? {
+        return context.ramMonitor.current
+    }
+
+    var lastBatteryReport: BatteryMonitor.BatteryReport? {
+        return context.batteryMonitor.current
     }
 }

@@ -108,19 +108,35 @@ class DashboardHeaderView: UITableViewHeaderFooterView {
     func configure(with viewModel: DashboardHeaderVM) {
         self.viewModel = viewModel
         self.viewModel?.updateCPUState = { [weak self] report in
-            self?.cpuUsedLabel.text = String(format: "Usage: %.2f\u{202f}%%", report.user * 100)
-            self?.cpuIdleLabel.text = String(format: "Idle: %.2f\u{202f}%%", report.idle * 100)
+            self?.updateCPU(report)
         }
         self.viewModel?.updateRAMState = { [weak self] report in
-            self?.ramFreeLabel.text = String(format: "Free: %.2f\u{00a0}Gb", report.free)
-            self?.ramActiveLabel.text = String(format: "Active: %.2f\u{00a0}Gb", report.active)
-            self?.ramInactiveLabel.text = String(format: "Inactive: %.2f\u{00a0}Gb", report.inactive)
-            self?.ramWiredLabel.text = String(format: "Wired: %.2f\u{00a0}Gb", report.wired)
-            self?.ramPressureLabel.text = String(format: "Pressure: %.2f\u{202f}%%", report.pressure * 100)
+            self?.updateRAM(report)
         }
         self.viewModel?.updateBatteryState = { [weak self] report in
-            self?.batteryLevelLabel.text = String(format: "Level: %.f\u{202f}%%", report.level * 100)
-            self?.batteryStateLabel.text = "State: \(report.state.readableValue)"
+            self?.updateBattery(report)
         }
+
+        viewModel.lastCPUReport.map { updateCPU($0) }
+        viewModel.lastRAMReport.map { updateRAM($0) }
+        viewModel.lastBatteryReport.map { updateBattery($0) }
+    }
+
+    func updateCPU(_ report: CPUMonitor.CPUReport) {
+        cpuUsedLabel.text = String(format: "Usage: %.2f\u{202f}%%", report.user * 100)
+        cpuIdleLabel.text = String(format: "Idle: %.2f\u{202f}%%", report.idle * 100)
+    }
+
+    func updateRAM(_ report: RAMMonitor.RAMReport) {
+        ramFreeLabel.text = String(format: "Free: %.2f\u{00a0}Gb", report.free)
+        ramActiveLabel.text = String(format: "Active: %.2f\u{00a0}Gb", report.active)
+        ramInactiveLabel.text = String(format: "Inactive: %.2f\u{00a0}Gb", report.inactive)
+        ramWiredLabel.text = String(format: "Wired: %.2f\u{00a0}Gb", report.wired)
+        ramPressureLabel.text = String(format: "Pressure: %.2f\u{202f}%%", report.pressure * 100)
+    }
+
+    func updateBattery(_ report: BatteryMonitor.BatteryReport) {
+        batteryLevelLabel.text = String(format: "Level: %.f\u{202f}%%", report.level * 100)
+        batteryStateLabel.text = "State: \(report.state.readableValue)"
     }
 }

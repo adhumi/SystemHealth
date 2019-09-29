@@ -1,6 +1,8 @@
 import Foundation
 
 class RAMMonitor: Monitor {
+    static let newReportNotificationName = NSNotification.Name("\(RAMMonitor.self).newReport")
+
     struct RAMReport: Report {
         /// There are more data avalable in `vm_statistics64` but those as the most widely used when tracking RAM usage.
         let free: Double
@@ -51,6 +53,7 @@ class RAMMonitor: Monitor {
     private func store(statistics: vm_statistics64) {
         let report = RAMReport(statistics: statistics)
         history.append(report)
+        NotificationCenter.default.post(name: type(of: self).newReportNotificationName, object: report)
     }
 }
 

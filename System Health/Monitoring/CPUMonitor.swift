@@ -1,6 +1,8 @@
 import Foundation
 
 class CPUMonitor: Monitor {
+    static let newReportNotificationName = NSNotification.Name("\(CPUMonitor.self).newReport")
+
     struct CPUReport: Report {
         /// `system` and `nice` are always empty on iOS.
         /// We keep them here for consistency with internal APIs and in case of future evolutions.
@@ -58,6 +60,7 @@ class CPUMonitor: Monitor {
         let report = CPUReport(load: load, previousLoad: previousLoad)
         history.append(report)
         self.previousLoad = load
+        NotificationCenter.default.post(name: type(of: self).newReportNotificationName, object: report)
     }
 }
 

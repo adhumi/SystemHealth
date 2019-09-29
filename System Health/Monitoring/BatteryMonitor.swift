@@ -2,6 +2,8 @@ import Foundation
 import UIKit
 
 class BatteryMonitor: Monitor {
+    static let newReportNotificationName = NSNotification.Name("\(BatteryMonitor.self).newReport")
+
     struct BatteryReport: Report {
         let level: Float
         let state: UIDevice.BatteryState
@@ -40,6 +42,7 @@ extension BatteryMonitor {
     private func storeBatteryState() {
         let report = BatteryReport(level: UIDevice.current.batteryLevel, state: UIDevice.current.batteryState)
         history.append(report)
+        NotificationCenter.default.post(name: type(of: self).newReportNotificationName, object: report)
     }
 }
 
