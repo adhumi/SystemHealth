@@ -116,7 +116,7 @@ class DashboardHeaderView: UITableViewHeaderFooterView {
             self?.ramActiveLabel.text = String(format: "Active: %.2f\u{00a0}Gb", report.active)
             self?.ramInactiveLabel.text = String(format: "Inactive: %.2f\u{00a0}Gb", report.inactive)
             self?.ramWiredLabel.text = String(format: "Wired: %.2f\u{00a0}Gb", report.wired)
-            self?.ramPressureLabel.text = String(format: "Pressur: %.2f\u{202f}%%", report.pressure * 100)
+            self?.ramPressureLabel.text = String(format: "Pressure: %.2f\u{202f}%%", report.pressure * 100)
         }
         self.viewModel?.updateBatteryState = { [weak self] report in
             self?.batteryLevelLabel.text = String(format: "Level: %.f\u{202f}%%", report.level * 100)
