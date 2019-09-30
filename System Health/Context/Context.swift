@@ -1,4 +1,5 @@
 import Foundation
+import UserNotifications
 
 class Context {
     let cpuMonitor = CPUMonitor()
@@ -67,38 +68,80 @@ class Context {
     private func setupThresholdsObservers() {
         thresholdsObservers.append(NotificationCenter.default.addObserver(forName: CPUMonitor.thresholdReachedNotificationName, object: nil, queue: OperationQueue.main) { [weak self] (notification) in
             guard let self = self, let report = notification.object as? CPUMonitor.CPUReport else { return }
+
             _ = Alert(metric: "cpu", value: report.user, state: "reached", date: Date(timeIntervalSince1970: report.timestamp), context: self.store.context)
             self.store.save()
+
+            let title = "CPU usage above threshold"
+            let message = String(format: "Value: %.2f\u{202f}%%", report.user * 100)
+            self.sendNotification(title: title, message: message, report: report)
         })
 
         thresholdsObservers.append(NotificationCenter.default.addObserver(forName: CPUMonitor.thresholdCooldownNotificationName, object: nil, queue: OperationQueue.main) { [weak self] (notification) in
             guard let self = self, let report = notification.object as? CPUMonitor.CPUReport else { return }
+
             _ = Alert(metric: "cpu", value: report.user, state: "cooldown", date: Date(timeIntervalSince1970: report.timestamp), context: self.store.context)
             self.store.save()
+
+            let title = "CPU usage back below threshold"
+            let message = String(format: "Value: %.2f\u{202f}%%", report.user * 100)
+            self.sendNotification(title: title, message: message, report: report)
         })
 
         thresholdsObservers.append(NotificationCenter.default.addObserver(forName: RAMMonitor.thresholdReachedNotificationName, object: nil, queue: OperationQueue.main) { [weak self] (notification) in
             guard let self = self, let report = notification.object as? RAMMonitor.RAMReport else { return }
+
             _ = Alert(metric: "ram", value: report.usage, state: "reached", date: Date(timeIntervalSince1970: report.timestamp), context: self.store.context)
             self.store.save()
+
+            let title = "Memory usage above threshold"
+            let message = String(format: "Value: %.2f\u{202f}%%", report.usage * 100)
+            self.sendNotification(title: title, message: message, report: report)
         })
 
         thresholdsObservers.append(NotificationCenter.default.addObserver(forName: RAMMonitor.thresholdCooldownNotificationName, object: nil, queue: OperationQueue.main) { [weak self] (notification) in
             guard let self = self, let report = notification.object as? RAMMonitor.RAMReport else { return }
+
             _ = Alert(metric: "ram", value: report.usage, state: "cooldown", date: Date(timeIntervalSince1970: report.timestamp), context: self.store.context)
             self.store.save()
+
+            let title = "Memory usage back below threshold"
+            let message = String(format: "Value: %.2f\u{202f}%%", report.usage * 100)
+            self.sendNotification(title: title, message: message, report: report)
         })
 
         thresholdsObservers.append(NotificationCenter.default.addObserver(forName: BatteryMonitor.thresholdReachedNotificationName, object: nil, queue: OperationQueue.main) { [weak self] (notification) in
             guard let self = self, let report = notification.object as? BatteryMonitor.BatteryReport else { return }
             _ = Alert(metric: "battery", value: report.level, state: "reached", date: Date(timeIntervalSince1970: report.timestamp), context: self.store.context)
             self.store.save()
+
+            let title = "Battery level below threshold"
+            let message = String(format: "Value: %.f\u{202f}%%", report.level * 100)
+            self.sendNotification(title: title, message: message, report: report)
         })
 
         thresholdsObservers.append(NotificationCenter.default.addObserver(forName: CPUMonitor.thresholdCooldownNotificationName, object: nil, queue: OperationQueue.main) { [weak self] (notification) in
             guard let self = self, let report = notification.object as? BatteryMonitor.BatteryReport else { return }
             _ = Alert(metric: "battery", value: report.level, state: "cooldown", date: Date(timeIntervalSince1970: report.timestamp), context: self.store.context)
             self.store.save()
+
+            let title = "Battery level back above threshold"
+            let message = String(format: "Value: %.f\u{202f}%%", report.level * 100)
+            self.sendNotification(title: title, message: message, report: report)
         })
+    }
+
+    func sendNotification(title: String, message: String, report: Report) {
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.body = message
+
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
+        let request = UNNotificationRequest(identifier: "fr.adhumi.SystemHealth.\(Int(report.timestamp))", content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request) { (error) in
+            if let error = error {
+                print(error)
+            }
+        }
     }
 }

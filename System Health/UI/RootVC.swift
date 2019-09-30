@@ -1,4 +1,5 @@
 import UIKit
+import UserNotifications
 
 class RootVC: UIViewController {
     let context: Context
@@ -26,39 +27,18 @@ class RootVC: UIViewController {
 
         alertsVC.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(onPresentSettings(_:)))
 
-        thresholdsObservers.append(NotificationCenter.default.addObserver(forName: CPUMonitor.thresholdReachedNotificationName, object: nil, queue: OperationQueue.main) { [weak self] (notification) in
-            guard let report = notification.object as? CPUMonitor.CPUReport else { return }
-            self?.presentAlert(title: "Threshold reached", message: String(format: "Using %.2f\u{202f}%% of CPU", report.user * 100))
-        })
-        thresholdsObservers.append(NotificationCenter.default.addObserver(forName: CPUMonitor.thresholdCooldownNotificationName, object: nil, queue: OperationQueue.main) { [weak self] (notification) in
-            guard let report = notification.object as? CPUMonitor.CPUReport else { return }
-            self?.presentAlert(title: "Cooldown", message: String(format: "Using %.2f\u{202f}%% of CPU", report.user * 100))
-        })
-        thresholdsObservers.append(NotificationCenter.default.addObserver(forName: RAMMonitor.thresholdReachedNotificationName, object: nil, queue: OperationQueue.main) { [weak self] (notification) in
-            guard let report = notification.object as? RAMMonitor.RAMReport else { return }
-            self?.presentAlert(title: "Threshold reached", message: String(format: "Using %.2f\u{202f}%% of RAM", report.usage * 100))
-        })
-        thresholdsObservers.append(NotificationCenter.default.addObserver(forName: RAMMonitor.thresholdCooldownNotificationName, object: nil, queue: OperationQueue.main) { [weak self] (notification) in
-        guard let report = notification.object as? RAMMonitor.RAMReport else { return }
-            self?.presentAlert(title: "Cooldown", message: String(format: "Using %.2f\u{202f}%% of RAM", report.usage * 100))
-        })
-        thresholdsObservers.append(NotificationCenter.default.addObserver(forName: BatteryMonitor.thresholdReachedNotificationName, object: nil, queue: OperationQueue.main) { [weak self] (notification) in
-            guard let report = notification.object as? BatteryMonitor.BatteryReport else { return }
-            self?.presentAlert(title: "Threshold reached", message: String(format: "%.2f\u{202f}%% of battery remaining", report.level * 100))
-        })
-        thresholdsObservers.append(NotificationCenter.default.addObserver(forName: BatteryMonitor.thresholdCooldownNotificationName, object: nil, queue: OperationQueue.main) { [weak self] (notification) in
-            guard let report = notification.object as? BatteryMonitor.BatteryReport else { return }
-            self?.presentAlert(title: "Cooldown", message: String(format: "%.2f\u{202f}%% of battery remaining", report.level * 100))
-        })
+        requestNotificationAuthorization()
     }
 
-    func presentAlert(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let dismissAction = UIAlertAction(title: "Ok", style: .default) { [weak self] (action) in
-            self?.dismiss(animated: true)
+    func requestNotificationAuthorization() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert]) {
+            (granted, error) in
+            if granted {
+                print("Notifications: success")
+            } else {
+                print("Notifications: error")
+            }
         }
-        alertController.addAction(dismissAction)
-        present(alertController, animated: true)
     }
 
     @IBAction func onPresentSettings(_ sender: UIBarButtonItem) {

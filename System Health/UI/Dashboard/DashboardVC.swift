@@ -27,6 +27,7 @@ class DashboardVC: UITableViewController {
         tableView.register(cellType: AlertCell.self)
         tableView.register(headerFooterType: DashboardHeaderView.self)
         tableView.sectionHeaderHeight = UITableView.automaticDimension
+        tableView.allowsSelection = false
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {

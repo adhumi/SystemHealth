@@ -181,7 +181,7 @@ class DashboardHeaderView: UITableViewHeaderFooterView {
         ramWiredLabel.text = String(format: "Wired: %.2f\u{00a0}Gb", report.wired)
         ramInactiveLabel.text = String(format: "Inactive: %.2f\u{00a0}Gb", report.inactive)
         ramFreeLabel.text = String(format: "Free: %.2f\u{00a0}Gb", report.free)
-        ramUsageLabel.text = String(format: "Usage: %.f\u{202f}%%", report.usage * 100)
+        ramUsageLabel.text = String(format: "Usage: %.2f\u{202f}%%", report.usage * 100)
     }
 
     func updateBattery(_ report: BatteryMonitor.BatteryReport) {
