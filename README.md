@@ -2,6 +2,9 @@
 
 This app monitors the main metrics of your iOS device (CPU, RAM, Battery). 
 
+## Requirements
+- Xcode 11 / iOS 13
+
 ## What it does
 - Monitor CPU, RAM and Battery and display their current state.
 - Allows user to define thresholds in the settings. A notification will be posted if the metric goes over this threshold. User can also be notified when it comes back below this threshold. 
