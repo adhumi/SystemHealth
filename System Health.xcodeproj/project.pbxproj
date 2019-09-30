@@ -12,6 +12,13 @@
 		BB42EAAF23415E8200DCD3D5 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB42EAAE23415E8200DCD3D5 /* Alert.swift */; };
 		BB42EAB12341625900DCD3D5 /* Context+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB42EAB02341625900DCD3D5 /* Context+Alert.swift */; };
 		BB42EAB723416E2F00DCD3D5 /* AlertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB42EAB623416E2F00DCD3D5 /* AlertCell.swift */; };
+		BB42EAB82341ECC800DCD3D5 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB84BDF23401893000D7619 /* SettingsStore.swift */; };
+		BB42EAB92341ED4700DCD3D5 /* AlertingPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB84BE12340193A000D7619 /* AlertingPreferences.swift */; };
+		BB42EABB2341F25500DCD3D5 /* CoreDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB42EABA2341F25500DCD3D5 /* CoreDataManagerTests.swift */; };
+		BB42EABC2341F57400DCD3D5 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB42EA7B23415C5500DCD3D5 /* CoreDataManager.swift */; };
+		BB42EABD2341F57700DCD3D5 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB42EAAE23415E8200DCD3D5 /* Alert.swift */; };
+		BB42EABE2341F57B00DCD3D5 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB42EA7823415AAD00DCD3D5 /* Model.xcdatamodeld */; };
+		BB42EAC02341F7BD00DCD3D5 /* AlertingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB42EABF2341F7BD00DCD3D5 /* AlertingTests.swift */; };
 		BB743F55233D775100E5F1F0 /* BatteryMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB743F54233D775100E5F1F0 /* BatteryMonitor.swift */; };
 		BB743F58233D7C1E00E5F1F0 /* RAMMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB743F57233D7C1E00E5F1F0 /* RAMMonitor.swift */; };
 		BB743F5B233D84F300E5F1F0 /* UIViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB743F5A233D84F300E5F1F0 /* UIViewController+Additions.swift */; };
@@ -21,7 +28,7 @@
 		BB894557233AB357005F4C23 /* RootVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB894556233AB357005F4C23 /* RootVC.swift */; };
 		BB89455C233AB35B005F4C23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB89455B233AB35B005F4C23 /* Assets.xcassets */; };
 		BB89455F233AB35B005F4C23 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB89455D233AB35B005F4C23 /* LaunchScreen.storyboard */; };
-		BB89456A233AB35B005F4C23 /* System_HealthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB894569233AB35B005F4C23 /* System_HealthTests.swift */; };
+		BB89456A233AB35B005F4C23 /* SettingsStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB894569233AB35B005F4C23 /* SettingsStoreTests.swift */; };
 		BB894579233AB8F8005F4C23 /* CPUMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB894578233AB8F8005F4C23 /* CPUMonitor.swift */; };
 		BB89457B233AC6BA005F4C23 /* Monitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB89457A233AC6BA005F4C23 /* Monitor.swift */; };
 		BBB84BD3233FF759000D7619 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB84BD2233FF759000D7619 /* Context.swift */; };
@@ -50,6 +57,8 @@
 		BB42EAAE23415E8200DCD3D5 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		BB42EAB02341625900DCD3D5 /* Context+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Context+Alert.swift"; sourceTree = "<group>"; };
 		BB42EAB623416E2F00DCD3D5 /* AlertCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertCell.swift; sourceTree = "<group>"; };
+		BB42EABA2341F25500DCD3D5 /* CoreDataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTests.swift; sourceTree = "<group>"; };
+		BB42EABF2341F7BD00DCD3D5 /* AlertingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertingTests.swift; sourceTree = "<group>"; };
 		BB743F54233D775100E5F1F0 /* BatteryMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryMonitor.swift; sourceTree = "<group>"; };
 		BB743F57233D7C1E00E5F1F0 /* RAMMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RAMMonitor.swift; sourceTree = "<group>"; };
 		BB743F5A233D84F300E5F1F0 /* UIViewController+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Additions.swift"; sourceTree = "<group>"; };
@@ -62,7 +71,7 @@
 		BB89455E233AB35B005F4C23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BB894560233AB35B005F4C23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB894565233AB35B005F4C23 /* System HealthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "System HealthTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BB894569233AB35B005F4C23 /* System_HealthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = System_HealthTests.swift; sourceTree = "<group>"; };
+		BB894569233AB35B005F4C23 /* SettingsStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStoreTests.swift; sourceTree = "<group>"; };
 		BB89456B233AB35B005F4C23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB894578233AB8F8005F4C23 /* CPUMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPUMonitor.swift; sourceTree = "<group>"; };
 		BB89457A233AC6BA005F4C23 /* Monitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monitor.swift; sourceTree = "<group>"; };
@@ -149,7 +158,9 @@
 		BB894568233AB35B005F4C23 /* System HealthTests */ = {
 			isa = PBXGroup;
 			children = (
-				BB894569233AB35B005F4C23 /* System_HealthTests.swift */,
+				BB894569233AB35B005F4C23 /* SettingsStoreTests.swift */,
+				BB42EABA2341F25500DCD3D5 /* CoreDataManagerTests.swift */,
+				BB42EABF2341F7BD00DCD3D5 /* AlertingTests.swift */,
 				BB89456B233AB35B005F4C23 /* Info.plist */,
 			);
 			path = "System HealthTests";
@@ -338,7 +349,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB89456A233AB35B005F4C23 /* System_HealthTests.swift in Sources */,
+				BB42EABD2341F57700DCD3D5 /* Alert.swift in Sources */,
+				BB42EAB92341ED4700DCD3D5 /* AlertingPreferences.swift in Sources */,
+				BB42EAB82341ECC800DCD3D5 /* SettingsStore.swift in Sources */,
+				BB42EABE2341F57B00DCD3D5 /* Model.xcdatamodeld in Sources */,
+				BB42EABB2341F25500DCD3D5 /* CoreDataManagerTests.swift in Sources */,
+				BB42EABC2341F57400DCD3D5 /* CoreDataManager.swift in Sources */,
+				BB89456A233AB35B005F4C23 /* SettingsStoreTests.swift in Sources */,
+				BB42EAC02341F7BD00DCD3D5 /* AlertingTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

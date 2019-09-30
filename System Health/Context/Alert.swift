@@ -3,7 +3,8 @@ import CoreData
 
 extension Alert {
     convenience init(metric: String, value: Float, state: String, date: Date, context: NSManagedObjectContext) {
-        self.init(entity: Alert.entity(), insertInto: context)
+        guard let entity = NSEntityDescription.entity(forEntityName: "Alert", in: context) else { fatalError() }
+        self.init(entity: entity, insertInto: context)
 
         self.metric = metric
         self.value = value
