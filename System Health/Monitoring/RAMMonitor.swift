@@ -37,7 +37,7 @@ class RAMMonitor: Monitor {
 
     var history: [RAMReport] = []
     
-    var checkStatus: ((RAMMonitor.RAMReport, RAMMonitor.RAMReport) -> MonitoringNotificationInstruction)?
+    var checkStatus: ((RAMReport, RAMReport?) -> MonitoringNotificationInstruction)?
 
     private var timer: Timer?
 

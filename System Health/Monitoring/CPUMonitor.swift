@@ -34,7 +34,7 @@ class CPUMonitor: Monitor {
     var history: [CPUReport] = []
     private var previousLoad = try? CPUMonitor.hostCPULoadInfo()
 
-    var checkStatus: ((CPUReport, CPUReport) -> MonitoringNotificationInstruction)?
+    var checkStatus: ((CPUReport, CPUReport?) -> MonitoringNotificationInstruction)?
 
     private var timer: Timer?
 

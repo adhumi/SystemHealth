@@ -17,7 +17,7 @@ protocol Monitor {
     var current: T? { get }
     var history: [T] { get }
 
-    var checkStatus: ((T, T) -> MonitoringNotificationInstruction)? { get set }
+    var checkStatus: ((T, T?) -> MonitoringNotificationInstruction)? { get set }
 
     static var newReportNotificationName: NSNotification.Name { get }
     static var thresholdReachedNotificationName: NSNotification.Name { get }
@@ -30,14 +30,12 @@ extension Monitor {
     }
 
     func checkThreshold(for report: T) {
-        if let previousReport = history.last {
-            switch checkStatus?(report, previousReport) {
-            case .reached:
-                NotificationCenter.default.post(name: type(of: self).thresholdReachedNotificationName, object: report)
-            case .cooldown:
-                NotificationCenter.default.post(name: type(of: self).thresholdCooldownNotificationName, object: report)
-            default: break
-            }
+        switch checkStatus?(report, history.last) {
+        case .reached:
+            NotificationCenter.default.post(name: type(of: self).thresholdReachedNotificationName, object: report)
+        case .cooldown:
+            NotificationCenter.default.post(name: type(of: self).thresholdCooldownNotificationName, object: report)
+        default: break
         }
     }
 }

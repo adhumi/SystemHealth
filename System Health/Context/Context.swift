@@ -18,10 +18,14 @@ class Context {
             guard let alertingPreferences = self.settingsStore.preferences["cpu"] else { return .none }
             guard alertingPreferences.active else { return .none }
 
-            if report.user >= alertingPreferences.threshold && previousReport.user < alertingPreferences.threshold {
+            if let previousReport = previousReport {
+                if report.user >= alertingPreferences.threshold && previousReport.user < alertingPreferences.threshold {
+                    return .reached
+                } else if alertingPreferences.cooldownAlert && report.user < alertingPreferences.threshold && previousReport.user >= alertingPreferences.threshold {
+                    return .cooldown
+                }
+            } else if report.user >= alertingPreferences.threshold {
                 return .reached
-            } else if alertingPreferences.cooldownAlert && report.user < alertingPreferences.threshold && previousReport.user >= alertingPreferences.threshold {
-                return .cooldown
             }
             return .none
         }
@@ -30,10 +34,14 @@ class Context {
             guard let alertingPreferences = self.settingsStore.preferences["ram"] else { return .none }
             guard alertingPreferences.active else { return .none }
 
-            if report.usage >= alertingPreferences.threshold && previousReport.usage < alertingPreferences.threshold {
+            if let previousReport = previousReport {
+                if report.usage >= alertingPreferences.threshold && previousReport.usage < alertingPreferences.threshold {
+                    return .reached
+                } else if alertingPreferences.cooldownAlert && report.usage < alertingPreferences.threshold && previousReport.usage >= alertingPreferences.threshold {
+                    return .cooldown
+                }
+            } else if report.usage >= alertingPreferences.threshold {
                 return .reached
-            } else if alertingPreferences.cooldownAlert && report.usage < alertingPreferences.threshold && previousReport.usage >= alertingPreferences.threshold {
-                return .cooldown
             }
             return .none
         }
@@ -42,10 +50,14 @@ class Context {
             guard let alertingPreferences = self.settingsStore.preferences["battery"] else { return .none }
             guard alertingPreferences.active else { return .none }
 
-            if report.level < alertingPreferences.threshold && previousReport.level >= alertingPreferences.threshold {
+            if let previousReport = previousReport {
+                if report.level < alertingPreferences.threshold && previousReport.level >= alertingPreferences.threshold {
+                    return .reached
+                } else if alertingPreferences.cooldownAlert && report.level >= alertingPreferences.threshold && previousReport.level < alertingPreferences.threshold {
+                    return .cooldown
+                }
+            } else if report.level < alertingPreferences.threshold {
                 return .reached
-            } else if alertingPreferences.cooldownAlert && report.level >= alertingPreferences.threshold && previousReport.level < alertingPreferences.threshold {
-                return .cooldown
             }
             return .none
         }

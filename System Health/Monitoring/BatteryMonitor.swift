@@ -15,7 +15,7 @@ class BatteryMonitor: Monitor {
 
     var history: [BatteryReport] = []
 
-    var checkStatus: ((BatteryReport, BatteryReport) -> MonitoringNotificationInstruction)?
+    var checkStatus: ((BatteryReport, BatteryReport?) -> MonitoringNotificationInstruction)?
 
     func start() {
         UIDevice.current.isBatteryMonitoringEnabled = true
